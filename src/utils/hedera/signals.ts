@@ -1,4 +1,5 @@
 import { signal } from "@preact/signals-react";
+import { HashConnect } from "hashconnect";
 import type {
   HashConnectConnectionState,
   HashConnectTypes,
@@ -18,3 +19,11 @@ export const StoreHawkHashConnectMetadata: HashConnectTypes.AppMetadata = {
   icon: "https://pycz.dev/favicon.svg",
   url: "http://localhost:3000",
 };
+
+const hashConnect = new HashConnect(true);
+
+void hashConnect
+  .init(StoreHawkHashConnectMetadata, "testnet", true)
+  .then((data: HashConnectTypes.InitilizationData) => {
+    initData.value = data;
+  });
