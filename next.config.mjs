@@ -18,5 +18,7 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+
+  transpilePackages: ["hashconnect"]
 };
 export default config;
