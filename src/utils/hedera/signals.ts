@@ -26,4 +26,5 @@ void hashConnect
   .init(StoreHawkHashConnectMetadata, "testnet", true)
   .then((data: HashConnectTypes.InitilizationData) => {
     initData.value = data;
+    hashConnectTopic.value = data.topic;
   });
