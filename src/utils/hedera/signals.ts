@@ -28,3 +28,7 @@ void hashConnect
     initData.value = data;
     hashConnectTopic.value = data.topic;
   });
+
+hashConnect.foundExtensionEvent.on((data: HashConnectTypes.WalletMetadata) => {
+  hashpackExtensionFound.value = !!data;
+});
