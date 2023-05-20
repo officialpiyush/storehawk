@@ -10,6 +10,9 @@ dependencies:
   '@fontsource/work-sans':
     specifier: ^4.5.14
     version: 4.5.14
+  '@formkit/auto-animate':
+    specifier: 1.0.0-beta.6
+    version: 1.0.0-beta.6
   '@preact/signals-react':
     specifier: ^1.3.2
     version: 1.3.2(react@18.2.0)
@@ -385,6 +388,10 @@ packages:
 
   /@fontsource/work-sans@4.5.14:
     resolution: {integrity: sha512-AFBSDBA3hnSCXHwb52qBOMEGqF5nfdbANp+y5/hbE1PMjYfFY0lUdtUwL5J7mRAdyn1NJwobJlhduHtlAyPzmA==}
+    dev: false
+
+  /@formkit/auto-animate@1.0.0-beta.6:
+    resolution: {integrity: sha512-PVDhLAlr+B4Xb7e+1wozBUWmXa6BFU8xUPR/W/E+TsQhPS1qkAdAsJ25keEnFrcePSnXHrOsh3tiFbEToOzV9w==}
     dev: false
 
   /@grpc/grpc-js@1.8.14:
