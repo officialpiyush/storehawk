@@ -47,7 +47,7 @@ export default function OrdersPage() {
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <div className="w-fit">
-        <Chip label="Orders" className="text-2xl font-bold" />
+        <Chip label="Orders" className="text-2xl font-bold bg-[#FF8577]" />
       </div>
 
       <div className=" grid grid-cols-8 gap-4 overflow-y-auto rounded-2xl bg-[#343434] px-4 py-4">
