@@ -4,6 +4,7 @@ import { faker } from "@faker-js/faker";
 import clsx from "clsx";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
+import { Momentum } from "@uiball/loaders";
 
 interface OrderData {
   orderId: number;
@@ -17,6 +18,7 @@ interface OrderData {
 
 export default function OrdersPage() {
   const [ORDER_DATA, setOrderData] = useState<OrderData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setOrderData(
@@ -42,15 +44,36 @@ export default function OrdersPage() {
         total: faker.number.int({ min: 0, max: 1000 }),
       }))
     );
+
+    const timeoutTime = faker.number.int({ min: 1000, max: 3000 });
+
+    setTimeout(() => {
+      setLoading(false);
+    }, timeoutTime);
   }, []);
 
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <div className="w-fit">
-        <Chip label="Orders" className="text-2xl font-bold bg-[#FF8577]" />
+        <Chip label="Orders" className="bg-[#FF8577] text-2xl font-bold" />
       </div>
 
-      <div className=" grid grid-cols-8 gap-4 overflow-y-auto rounded-2xl bg-[#343434] px-4 py-4">
+      <div
+        className={clsx(
+          !loading && "hidden",
+          "flex h-full w-full items-center justify-center",
+          "overflow-y-auto rounded-2xl bg-[#343434] px-4 py-4"
+        )}
+      >
+        <Momentum color="#706a6a" />
+      </div>
+
+      <div
+        className={clsx(
+          "grid grid-cols-8 gap-4 overflow-y-auto rounded-2xl bg-[#343434] px-4 py-4",
+          loading && "hidden"
+        )}
+      >
         {/*  row 1 */}
         <div className="col-span-1"></div>
 
