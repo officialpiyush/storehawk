@@ -1,6 +1,8 @@
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Chip from "../Chip";
+import { Momentum } from "@uiball/loaders";
+import { faker } from "@faker-js/faker";
 
 interface InventoryCardProps {
   itemName: string;
@@ -12,16 +14,36 @@ interface InventoryCardProps {
 }
 
 export default function InventoryCard(props: InventoryCardProps) {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timeoutTime = faker.number.int({ min: 1000, max: 3000 });
+
+    setTimeout(() => {
+      setLoading(false);
+    }, timeoutTime);
+  }, []);
 
   return (
     <div
       className={clsx(
-        "flex flex-col items-center gap-2 bg-[#6095ac] text-white",
+        "flex flex-col items-center justify-center gap-2 bg-[#6095ac] text-white",
         "font-medium",
-        "rounded-xl px-4 py-4"
+        "rounded-xl px-4 py-4",
+        "relative"
       )}
     >
+      <div
+        className={clsx(
+          !loading && "hidden",
+          "absolute bottom-0 left-0 right-0 top-0",
+          "rounded-xl bg-[#6095ac]",
+          "flex items-center justify-center"
+        )}
+      >
+        <Momentum color="#244f62" />
+      </div>
+
       <div className=" font-normal">Inventory: {props.itemName}</div>
 
       <Chip
