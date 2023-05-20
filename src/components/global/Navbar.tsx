@@ -42,7 +42,7 @@ export default function Navbar() {
       {NAVBAR_ITEMS.map((item) => (
         <Link
           className={clsx(
-            router.pathname === item.path &&
+            router.pathname.startsWith(item.path) &&
               "rounded-full bg-[#FF8577] px-6 py-1",
             "font-medium",
             item.customClassName && item.customClassName
