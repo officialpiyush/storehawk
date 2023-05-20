@@ -14,8 +14,8 @@ import "@fontsource/work-sans/700.css";
 import "@fontsource/work-sans/800.css";
 import "@fontsource/work-sans/900.css";
 
-import "@/styles/globals.css";
 import Navbar from "@/components/global/Navbar";
+import "@/styles/globals.css";
 import Head from "next/head";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
