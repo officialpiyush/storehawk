@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 
 import Chip from "@/components/Chip";
 import { faker } from "@faker-js/faker";
-import { AreaChart } from "@tremor/react";
+import { AreaChart, BarChart } from "@tremor/react";
 import dayjs from "dayjs";
 
 const CHIP_DATA = [
@@ -50,6 +50,16 @@ const ORDER_DATA = new Array(daysElapsed).fill(0).map((_, index) => ({
     max: 90,
   }),
 }));
+
+const MONTHLY_SALES = new Array(dayjs().diff(dayjs().startOf("year"), "month"))
+  .fill(0)
+  .map((_, index) => ({
+    month: dayjs().startOf("year").add(index, "month").format("MMM-YY"),
+    sales: faker.number.int({
+      min: 240,
+      max: 3000,
+    }),
+  }));
 
 const Home: NextPage = () => {
   return (
@@ -99,7 +109,18 @@ const Home: NextPage = () => {
 
         {/* second column */}
         <div className="col-span-4 flex h-full w-full flex-col gap-4">
-          <div className="h-full rounded-xl bg-[#C0DE77]">C0DE77</div>
+          <div className="h-full flex flex-col gap-6 rounded-xl bg-[#C0DE77] px-4 py-4">
+            <h1 className="text-xl">Monthly Sales:</h1>
+            <div className="h-full flex items-center justify-center">
+              <BarChart
+                data={MONTHLY_SALES}
+                index="month"
+                categories={["sales"]}
+                className="h-96 rounded-lg bg-white px-4 py-2"
+                valueFormatter={(value) => `${value} USD`}
+              />
+            </div>
+          </div>
         </div>
 
         {/* third column */}
