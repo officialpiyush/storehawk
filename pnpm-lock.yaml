@@ -4,6 +4,9 @@ dependencies:
   '@fontsource/lobster':
     specifier: ^4.5.11
     version: 4.5.11
+  '@fontsource/work-sans':
+    specifier: ^4.5.14
+    version: 4.5.14
   '@preact/signals-react':
     specifier: ^1.3.2
     version: 1.3.2(react@18.2.0)
@@ -325,6 +328,10 @@ packages:
 
   /@fontsource/lobster@4.5.11:
     resolution: {integrity: sha512-763GTn/QS42WI8LSZcmrLITvCzs8vHfTQhbltPQ8NWGYRJV9L+C8HIUm7qqL1R8+tyxkmruKlHDqdlpT+dPFXQ==}
+    dev: false
+
+  /@fontsource/work-sans@4.5.14:
+    resolution: {integrity: sha512-AFBSDBA3hnSCXHwb52qBOMEGqF5nfdbANp+y5/hbE1PMjYfFY0lUdtUwL5J7mRAdyn1NJwobJlhduHtlAyPzmA==}
     dev: false
 
   /@grpc/grpc-js@1.8.14:
