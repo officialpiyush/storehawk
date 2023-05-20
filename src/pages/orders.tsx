@@ -3,30 +3,46 @@ import EkyamIcon from "@/components/icons/ekyam";
 import { faker } from "@faker-js/faker";
 import clsx from "clsx";
 import dayjs from "dayjs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+interface OrderData {
+  orderId: number;
+  orderDate: string;
+  customerName: string;
+  payment: "paid" | "unpaid" | "authorized";
+  fullfilment: "fulfilled" | "unfulfilled" | "partially-fulfilled";
+  discount: number;
+  total: number;
+}
 
 export default function OrdersPage() {
-  const [ORDER_DATA] = useState(
-    new Array(10).fill(0).map((_, i) => ({
-      orderId: 1731 + i,
-      orderDate: dayjs(
-        faker.date.between({
-          from: dayjs().subtract(1, "month").toDate(),
-          to: new Date(),
-        })
-      ).format("ddd, DD/MM/YY"),
-      customerName: faker.person.firstName(),
-      payment: faker.helpers.arrayElement(["paid", "unpaid", "authorized"]),
-      fullfilment: faker.helpers.arrayElement([
-        "fulfilled",
-        "unfulfilled",
-        "partially-fulfilled",
-      ]),
-      discount:
-        i === 4 ? 0 : faker.number.float({ min: 0, max: 1, precision: 0.0001 }),
-      total: faker.number.int({ min: 0, max: 1000 }),
-    }))
-  );
+  const [ORDER_DATA, setOrderData] = useState<OrderData[]>([]);
+
+  useEffect(() => {
+    setOrderData(
+      new Array(10).fill(0).map((_, i) => ({
+        orderId: 1731 + i,
+        orderDate: dayjs(
+          faker.date.between({
+            from: dayjs().subtract(1, "month").toDate(),
+            to: new Date(),
+          })
+        ).format("ddd, DD/MM/YY"),
+        customerName: faker.person.firstName(),
+        payment: faker.helpers.arrayElement(["paid", "unpaid", "authorized"]),
+        fullfilment: faker.helpers.arrayElement([
+          "fulfilled",
+          "unfulfilled",
+          "partially-fulfilled",
+        ]),
+        discount:
+          i === 4
+            ? 0
+            : faker.number.float({ min: 0, max: 1, precision: 0.0001 }),
+        total: faker.number.int({ min: 0, max: 1000 }),
+      }))
+    );
+  }, []);
 
   return (
     <div className="flex h-full w-full flex-col gap-4">
