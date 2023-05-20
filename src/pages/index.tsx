@@ -67,7 +67,7 @@ const MONTHLY_SALES = new Array(dayjs().diff(dayjs().startOf("year"), "month"))
 const Home: NextPage = () => {
   const [todoList, setTodoList] = useState<string[]>([]);
   const [todoField, setTodoField] = useState<string>("");
-  const [animaetTodoRef, enableTodoAnimations] = useAutoAnimate();
+  const [animateTodoRef] = useAutoAnimate();
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <div className="w-fit">
@@ -155,22 +155,23 @@ const Home: NextPage = () => {
                 </button>
               </div>
 
-              <div ref={animaetTodoRef} className="flex flex-col gap-2 pt-2">
+              <div ref={animateTodoRef} className="flex flex-col gap-2 pt-2">
                 {todoList.map((todo, index) => (
                   <div
                     key={index}
-                    className="flex w-full items-center gap-2 rounded-full bg-[#c0de77] p-2 px-4 py-2"
+                    className="flex items-center gap-2 rounded-full bg-[#c0de77] px-4 py-2"
                   >
-                    <span className="w-full">{todo}</span>
+                    <div>{todo}</div>
+
                     <button
-                      className="place-self-end"
+                      className="group place-self-end self-center"
                       onClick={() => {
                         setTodoList((prev) =>
                           prev.filter((_, i) => i !== index)
                         );
                       }}
                     >
-                      <IconTrash />
+                      <IconTrash className="group-hover:text-red-600" />
                     </button>
                   </div>
                 ))}
