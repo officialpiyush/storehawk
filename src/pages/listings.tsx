@@ -67,7 +67,7 @@ export default function ListingsPage() {
           <div className="">
             <ListingSellerCard
               className="bg-[#adadad]"
-              title="TOP SELLERS"
+              title="Items for Sale"
               icon={<IconList />}
               items={INVENTORY_DATA.map((item) => item.itemName) ?? []}
             />
