@@ -1,6 +1,9 @@
 import { type NextPage } from "next";
 
 import Chip from "@/components/Chip";
+import { faker } from "@faker-js/faker";
+import { AreaChart } from "@tremor/react";
+import dayjs from "dayjs";
 
 const CHIP_DATA = [
   {
@@ -29,6 +32,25 @@ const CHIP_DATA = [
   },
 ];
 
+const daysElapsed = dayjs().diff(dayjs(dayjs().startOf("month")), "day");
+
+const ORDER_DATA = new Array(daysElapsed).fill(0).map((_, index) => ({
+  date: dayjs().startOf("month").add(index, "day").format("MMM-DD"),
+
+  skateboard: faker.number.int({
+    min: 0,
+    max: 40,
+  }),
+  surfboard: faker.number.int({
+    min: 0,
+    max: 20,
+  }),
+  kords: faker.number.int({
+    min: 0,
+    max: 90,
+  }),
+}));
+
 const Home: NextPage = () => {
   return (
     <div className="flex h-full w-full flex-col gap-4">
@@ -43,17 +65,24 @@ const Home: NextPage = () => {
       </div>
 
       <div className="grid flex-1 grid-cols-12 gap-4 font-medium">
-        <div className="col-span-5 flex h-full w-full flex-col gap-4">
-          <div className="h-full rounded-xl bg-[#C0DE77] px-4  py-4">
-            <h1 className="text-xl">Orders Today:</h1>
+        <div className="col-span-5 flex h-fit w-full flex-col gap-4">
+          <div className="flex h-fit flex-col gap-2  rounded-xl bg-[#C0DE77] px-4 py-4">
+            <h1 className="text-xl">Orders this Month:</h1>
+
+            <AreaChart
+              className="h-72 rounded-xl bg-white"
+              data={ORDER_DATA}
+              categories={["skateboard", "surfboard", "kords"]}
+              index="date"
+              colors={["yellow", "red", "lime"]}
+            />
           </div>
 
-          <div className="flex h-1/2 w-full rounded-xl bg-white ">
-            <div className="flex w-full flex-col gap-3 overflow-y-auto px-4 py-4 text-sm">
-              <span>Lucifer purchases made on Skateboard</span>
-              <span>Lucifer purchases made on Skateboard</span>
-              <span>Lucifer purchases made on Skateboard</span>
-              <span>Lucifer purchases made on Skateboard</span>
+          <div className="flex h-full w-full rounded-xl bg-white ">
+            <div className="flex w-full flex-col gap-2 overflow-y-auto px-4 py-4 text-sm">
+              <span className="">Lucifer purchases made on Skateboard</span>
+              <span className="">Lucifer purchases made on Skateboard</span>
+              <span className="">Lucifer purchases made on Skateboard</span>
             </div>
 
             <div className="flex h-full w-1/2 flex-col rounded-r-xl bg-[#9FC2D1]">
