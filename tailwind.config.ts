@@ -7,6 +7,7 @@ export default {
     extend: {
       fontFamily: {
         lobster: ["Lobster", ...fontFamily.sans],
+        sans: ["Work Sans", ...fontFamily.serif],
       },
     },
   },
