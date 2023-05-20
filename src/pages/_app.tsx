@@ -4,13 +4,22 @@ import { api } from "@/utils/api";
 
 import "@fontsource/lobster";
 import "@fontsource/work-sans";
+import "@fontsource/work-sans/100.css";
+import "@fontsource/work-sans/200.css";
+import "@fontsource/work-sans/300.css";
+import "@fontsource/work-sans/400.css";
+import "@fontsource/work-sans/500.css";
+import "@fontsource/work-sans/600.css";
+import "@fontsource/work-sans/700.css";
+import "@fontsource/work-sans/800.css";
+import "@fontsource/work-sans/900.css";
 
 import "@/styles/globals.css";
 import Navbar from "@/components/global/Navbar";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <div className="h-screen bg-[#D6F18E]">
+    <div className="h-screen bg-[#D6F18E] font-sans">
       <div
         className="absolute left-0 right-0 top-0 z-10 h-40 bg-cover bg-center bg-no-repeat"
         style={{
