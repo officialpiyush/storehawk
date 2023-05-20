@@ -3,31 +3,31 @@ import EkyamIcon from "@/components/icons/ekyam";
 import { faker } from "@faker-js/faker";
 import clsx from "clsx";
 import dayjs from "dayjs";
-
-let orderId = 1731;
-
-const ORDER_DATA = new Array(10).fill(0).map((_) => ({
-  orderId: orderId++,
-  orderDate: dayjs(
-    faker.date.between({
-      from: dayjs().subtract(1, "month").toDate(),
-      to: new Date(),
-    })
-  ).format("ddd, DD/MM/YY"),
-  customerName: faker.person.firstName(),
-  payment: faker.helpers.arrayElement(["paid", "unpaid", "authorized"]),
-  fullfilment: faker.helpers.arrayElement([
-    "fulfilled",
-    "unfulfilled",
-    "partially-fulfilled",
-  ]),
-  discount: faker.number.float({ min: 0, max: 1, precision: 0.0001 }),
-  total: faker.number.int({ min: 0, max: 1000 }),
-}));
-
-ORDER_DATA[4]!.discount = 0;
+import { useState } from "react";
 
 export default function OrdersPage() {
+  const [ORDER_DATA] = useState(
+    new Array(10).fill(0).map((_, i) => ({
+      orderId: 1731 + i,
+      orderDate: dayjs(
+        faker.date.between({
+          from: dayjs().subtract(1, "month").toDate(),
+          to: new Date(),
+        })
+      ).format("ddd, DD/MM/YY"),
+      customerName: faker.person.firstName(),
+      payment: faker.helpers.arrayElement(["paid", "unpaid", "authorized"]),
+      fullfilment: faker.helpers.arrayElement([
+        "fulfilled",
+        "unfulfilled",
+        "partially-fulfilled",
+      ]),
+      discount:
+        i === 4 ? 0 : faker.number.float({ min: 0, max: 1, precision: 0.0001 }),
+      total: faker.number.int({ min: 0, max: 1000 }),
+    }))
+  );
+
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <div className="w-fit">
@@ -39,17 +39,30 @@ export default function OrdersPage() {
         <div className="col-span-1"></div>
 
         <div className="col-span-7 flex items-center gap-2 text-white">
-          <Chip label={`Paid: ${ORDER_DATA.filter(order => order.payment === "paid").length}`} className="bg-[#59a04d] text-xs font-medium" />
           <Chip
-           label={`Unpaid: ${ORDER_DATA.filter(order => order.payment === "unpaid").length}`}
+            label={`Paid: ${
+              ORDER_DATA.filter((order) => order.payment === "paid").length
+            }`}
+            className="bg-[#59a04d] text-xs font-medium"
+          />
+          <Chip
+            label={`Unpaid: ${
+              ORDER_DATA.filter((order) => order.payment === "unpaid").length
+            }`}
             className="bg-[#b35050] text-xs font-medium"
           />
           <Chip
-            label={`Fulfilled: ${ORDER_DATA.filter(order => order.fullfilment === "fulfilled").length}`}
+            label={`Fulfilled: ${
+              ORDER_DATA.filter((order) => order.fullfilment === "fulfilled")
+                .length
+            }`}
             className="bg-[#706a6a] text-xs font-medium"
           />
           <Chip
-            label={`Fulfilled: ${ORDER_DATA.filter(order => order.fullfilment === "unfulfilled").length}`}
+            label={`Fulfilled: ${
+              ORDER_DATA.filter((order) => order.fullfilment === "unfulfilled")
+                .length
+            }`}
             className="bg-[#3c9ca2] text-xs font-medium"
           />
         </div>
