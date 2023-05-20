@@ -16,6 +16,7 @@ import "@fontsource/work-sans/900.css";
 
 import "@/styles/globals.css";
 import Navbar from "@/components/global/Navbar";
+import Head from "next/head";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
@@ -26,13 +27,19 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           backgroundImage: "url(/wave.png)",
         }}
       >
+        <Head>
+          <title>StoreHawk</title>
+          <meta name="description" content="soon:tm:" />
+          <link rel="icon" href="/favicon.png" />
+        </Head>
+
         {/* <img className=" h-40 w-full" src="/wave.png" alt="" /> */}
       </div>
       <div className="absolute left-0 right-0 top-0 z-20 mx-auto flex h-screen max-w-7xl flex-col px-2">
         <div className="py-4">
           <Navbar />
         </div>
-        <div className="h-full w-full flex-1 pt-16 mb-4 overflow-y-auto">
+        <div className="mb-4 h-full w-full flex-1 overflow-y-auto pt-16">
           <Component {...pageProps} />
         </div>
       </div>
