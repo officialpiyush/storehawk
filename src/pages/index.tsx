@@ -71,7 +71,7 @@ const Home: NextPage = () => {
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <div className="w-fit">
-        <Chip label="Dashboard" className="text-2xl font-bold" />
+        <Chip label="Dashboard" className="text-2xl font-bold bg-[#FF8577]" />
       </div>
 
       <div className="flex flex-wrap items-center gap-2 font-medium">

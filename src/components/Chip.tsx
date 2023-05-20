@@ -9,7 +9,7 @@ export default function Chip(props: ChipProps) {
     <div
       {...props}
       className={clsx(
-        "rounded-full bg-[#FF8577] px-6 py-1",
+        "rounded-full px-6 py-1",
         props.className && props.className
       )}
     >

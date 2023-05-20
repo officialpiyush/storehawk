@@ -22,7 +22,7 @@ export default function VendorChatPage() {
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <div className="w-fit">
-        <Chip label="Vendors" className="text-2xl font-bold" />
+        <Chip label="Vendors" className="text-2xl font-bold bg-[#FF8577]" />
       </div>
 
       <div className="flex h-full w-full flex-1 flex-col gap-4 overflow-y-auto rounded-2xl bg-[#C0DE77] px-4 py-4">
