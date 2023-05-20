@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        lobster: ["var(--font-lobster)", ...fontFamily.sans],
+        lobster: ["Lobster", ...fontFamily.sans],
       },
     },
   },
