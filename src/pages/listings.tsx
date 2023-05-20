@@ -1,6 +1,8 @@
 import Chip from "@/components/Chip";
 import InventoryCard from "@/components/listings/InventoryCard";
+import ListingSellerCard from "@/components/listings/ListingSellerCard";
 import { faker } from "@faker-js/faker";
+import { IconGraph, IconGraphOff, IconList } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 interface InventoryData {
@@ -35,13 +37,42 @@ export default function ListingsPage() {
       </div>
 
       <div className="flex h-full w-full flex-1 gap-2">
-        <div className="grid h-full w-3/4 grid-cols-2 gap-4">
+        <div className="grid h-full w-3/4 grid-cols-2 gap-4 overflow-y-auto">
           {INVENTORY_DATA.map((item) => (
             <InventoryCard key={item.itemName} {...item} />
           ))}
         </div>
 
-        <div className="h-full w-3/6 bg-pink-950">.</div>
+        <div className="flex h-fit w-3/6 flex-col gap-6 rounded-xl bg-[#b5d468] px-4 py-4">
+          <div className="flex gap-6">
+            <ListingSellerCard
+              title="TOP SELLERS"
+              icon={<IconGraph />}
+              items={faker.helpers.arrayElements(
+                INVENTORY_DATA.map((item) => item.itemName),
+                2
+              )}
+            />
+
+            <ListingSellerCard
+              title="LEAST SELLERS"
+              icon={<IconGraphOff />}
+              items={faker.helpers.arrayElements(
+                INVENTORY_DATA.map((item) => item.itemName),
+                2
+              )}
+            />
+          </div>
+
+          <div className="">
+            <ListingSellerCard
+              className="bg-[#adadad]"
+              title="TOP SELLERS"
+              icon={<IconList />}
+              items={INVENTORY_DATA.map((item) => item.itemName) ?? []}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
