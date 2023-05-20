@@ -3,7 +3,10 @@ import { type NextPage } from "next";
 import Chip from "@/components/Chip";
 import { faker } from "@faker-js/faker";
 import { AreaChart, BarChart } from "@tremor/react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import dayjs from "dayjs";
+import { IconPlus, IconTrash } from "@tabler/icons-react";
+import { useState } from "react";
 
 const CHIP_DATA = [
   {
@@ -62,6 +65,9 @@ const MONTHLY_SALES = new Array(dayjs().diff(dayjs().startOf("year"), "month"))
   }));
 
 const Home: NextPage = () => {
+  const [todoList, setTodoList] = useState<string[]>([]);
+  const [todoField, setTodoField] = useState<string>("");
+  const [animaetTodoRef, enableTodoAnimations] = useAutoAnimate();
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <div className="w-fit">
@@ -109,9 +115,9 @@ const Home: NextPage = () => {
 
         {/* second column */}
         <div className="col-span-4 flex h-full w-full flex-col gap-4">
-          <div className="h-full flex flex-col gap-6 rounded-xl bg-[#C0DE77] px-4 py-4">
+          <div className="flex h-full flex-col gap-6 rounded-xl bg-[#C0DE77] px-4 py-4">
             <h1 className="text-xl">Monthly Sales:</h1>
-            <div className="h-full flex items-center justify-center">
+            <div className="flex h-full items-center justify-center">
               <BarChart
                 data={MONTHLY_SALES}
                 index="month"
@@ -125,7 +131,52 @@ const Home: NextPage = () => {
 
         {/* third column */}
         <div className="col-span-3 flex h-full w-full flex-col gap-4">
-          <div className="h-full rounded-xl bg-[#C0DE77]">C0DE77</div>
+          <div className="flex h-full flex-col gap-2 rounded-xl bg-[#C0DE77] px-4 py-4">
+            <h1 className="text-center text-xl">TODO List</h1>
+
+            <div className="flex h-full w-full flex-1 flex-col gap-2 overflow-y-auto rounded-xl bg-white px-2 py-2">
+              <div className="flex items-center gap-2">
+                <input
+                  className="w-full rounded-full border-2 px-2 py-1 text-lg"
+                  placeholder="add todo"
+                  value={todoField}
+                  onChange={(e) => setTodoField(e.currentTarget.value)}
+                  onKeyDown={(e) => setTodoField(e.currentTarget.value)}
+                  type="text"
+                />
+                <button
+                  onClick={() => {
+                    setTodoList((prev) => [...prev, todoField]);
+                    setTodoField("");
+                  }}
+                  className="rounded-full bg-[#c0de77] p-2"
+                >
+                  <IconPlus />
+                </button>
+              </div>
+
+              <div ref={animaetTodoRef} className="flex flex-col gap-2 pt-2">
+                {todoList.map((todo, index) => (
+                  <div
+                    key={index}
+                    className="flex w-full items-center gap-2 rounded-full bg-[#c0de77] p-2 px-4 py-2"
+                  >
+                    <span className="w-full">{todo}</span>
+                    <button
+                      className="place-self-end"
+                      onClick={() => {
+                        setTodoList((prev) =>
+                          prev.filter((_, i) => i !== index)
+                        );
+                      }}
+                    >
+                      <IconTrash />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
