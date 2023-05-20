@@ -21,6 +21,7 @@
     "@trpc/react-query": "^10.18.0",
     "@trpc/server": "^10.18.0",
     "clsx": "^1.2.1",
+    "date-fns": "^2.30.0",
     "hashconnect": "^0.2.4",
     "next": "^13.4.1",
     "react": "18.2.0",

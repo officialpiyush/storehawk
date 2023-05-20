@@ -37,6 +37,9 @@ dependencies:
   clsx:
     specifier: ^1.2.1
     version: 1.2.1
+  date-fns:
+    specifier: ^2.30.0
+    version: 2.30.0
   hashconnect:
     specifier: ^0.2.4
     version: 0.2.4
