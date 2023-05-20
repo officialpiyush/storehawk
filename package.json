@@ -13,6 +13,7 @@
     "@fontsource/lobster": "^4.5.11",
     "@fontsource/work-sans": "^4.5.14",
     "@formkit/auto-animate": "1.0.0-beta.6",
+    "@hashgraph/sdk": "^2.25.0",
     "@t3-oss/env-nextjs": "^0.2.1",
     "@tabler/icons-react": "^2.19.0",
     "@tanstack/react-query": "^4.28.0",
