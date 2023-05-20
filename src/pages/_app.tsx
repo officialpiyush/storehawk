@@ -32,7 +32,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <div className="py-4">
           <Navbar />
         </div>
-        <div>
+        <div className="h-full w-full flex-1 pt-16 mb-4 overflow-y-auto">
           <Component {...pageProps} />
         </div>
       </div>
