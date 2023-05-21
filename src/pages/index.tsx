@@ -4,14 +4,12 @@ import Chip from "@/components/Chip";
 import { api } from "@/utils/api";
 import { faker } from "@faker-js/faker";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import {
-  IconPlus,
-  IconSquareRotatedForbid
-} from "@tabler/icons-react";
+import { IconPlus, IconSquareRotatedForbid } from "@tabler/icons-react";
 import { AreaChart, BarChart } from "@tremor/react";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const CHIP_DATA = [
   {
@@ -120,6 +118,8 @@ const Home: NextPage = () => {
         deleted: false,
       }),
     });
+
+    toast.success(`Added todo to Hedera | TxID: ${transactionId}`);
 
     setTodoList((prev) => [
       ...prev,

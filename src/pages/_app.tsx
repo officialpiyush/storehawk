@@ -46,7 +46,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         </div>
       </div>
 
-      <ToastContainer />
+      <ToastContainer theme="dark" />
     </div>
   );
 };
