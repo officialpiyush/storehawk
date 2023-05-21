@@ -3,6 +3,7 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { wallet, client } from "@/utils/hedera/server";
 import { createMessage, getTopic } from "@/utils/hedera/server/topic";
+import { mintNFT } from "@/utils/hedera/server/mint";
 
 export const hederaRouter = createTRPCRouter({
   hello: publicProcedure.query(async () => {
@@ -43,4 +44,23 @@ export const hederaRouter = createTRPCRouter({
         transactionId,
       };
     }),
+
+    mintNFT: publicProcedure
+    .input(
+      z.object({
+        type: z.string(),
+        key: z.string(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      const { type, key } = input;
+
+      const transactionId = await mintNFT(type, key);
+
+      console.log(transactionId);
+
+      return {
+        transactionId,
+      };
+    })
 });

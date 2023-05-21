@@ -4,18 +4,21 @@ import UpdateClassName from "@/components/UpdateClassName";
 
 const NFT_DETAILS = [
   {
+    type: "frequent",
     title: "Enjoy free delivery on your next 5 orders.*^",
     description:
       "*Above 60 units, compared to 100 units for a normal customer.^Revoked after 5 orders.",
     image: "/nft-issue/14.png",
   },
   {
+    type: "sustainable",
     title: "A drop of sustainable freebies on your next 5 orders.*^",
     description:
       "*Subject to availability, supply comes from certified sustainable vendors. ^Revoked after 5 orders.",
     image: "/nft-issue/15.png",
   },
   {
+    type: "splurge",
     title: "Enjoy a discount on your next 5 orders.*^",
     description:
       "*The order must amount to a minimum of 70% or above of the last splurge purchase. ^Revoked after 5 orders.",
@@ -38,6 +41,7 @@ export default function NFTPage() {
               title={detail.title}
               description={detail.description}
               image={detail.image}
+              type={detail.type}
             />
           ))}
         </div>
