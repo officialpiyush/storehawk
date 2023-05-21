@@ -38,7 +38,7 @@ export default function Navbar() {
   const router = useRouter();
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
       {NAVBAR_ITEMS.map((item) => (
         <Link
           className={clsx(

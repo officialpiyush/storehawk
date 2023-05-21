@@ -37,11 +37,11 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
         {/* <img className=" h-40 w-full" src="/wave.png" alt="" /> */}
       </div>
-      <div className="absolute left-0 right-0 top-0 z-20 mx-auto flex h-screen max-w-7xl flex-col px-2">
-        <div className="py-4">
+      <div className="absolute left-0 right-0 top-0 z-20 flex h-screen flex-col ">
+        <div id="navbarColor" className="w-full py-4">
           <Navbar />
         </div>
-        <div className="mb-4 h-full w-full flex-1 overflow-y-auto pt-16">
+        <div className="mx-auto mb-4 h-full w-full max-w-7xl flex-1 overflow-y-auto px-2 pt-16">
           <Component {...pageProps} />
         </div>
       </div>
