@@ -7,7 +7,7 @@ import {
 } from "@tabler/icons-react";
 import clsx from "clsx";
 import Link from "next/link";
-import type { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 
 interface VendorInfoBoxProps {
   title: string;
@@ -28,11 +28,19 @@ function VendorChipWithIcon(props: { icon: ReactElement; label: string }) {
 }
 
 export default function VendorInfoBox({ title }: VendorInfoBoxProps) {
+  const [name, setName] = useState("");
+  const [chatKey, setChatKey] = useState("");
+
+  useEffect(() => {
+    setName(faker.person.fullName());
+    setChatKey(faker.number.hex(900090000000));
+  }, []);
+
   return (
     <div className="flex w-full flex-col rounded-xl bg-[#D7ECF4]">
       {/* first row */}
       <div className="flex items-center justify-between rounded-xl bg-[#9FC2D1] px-4 py-2">
-        <span className="font-medium">{faker.person.fullName()}</span>
+        <span className="font-medium">{name}</span>
 
         <div className="flex gap-2">
           <button>
@@ -49,7 +57,7 @@ export default function VendorInfoBox({ title }: VendorInfoBoxProps) {
             />
           </button>
 
-          <Link href={`/vendors/chat/${faker.number.hex(900090000000)}`}>
+          <Link href={`/vendors/chat/${chatKey}`}>
             <VendorChipWithIcon
               icon={<IconMessageDots color="#CFEB70" />}
               label="Text"
