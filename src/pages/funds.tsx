@@ -1,5 +1,5 @@
 import Chip from "@/components/Chip";
-import NFTCard from "@/components/NFT/NFTCard";
+import NFTCard from "@/components/NFTFunding/NFTFundingCard";
 import UpdateClassName from "@/components/UpdateClassName";
 import { faker } from "@faker-js/faker";
 import { IconUpload } from "@tabler/icons-react";
