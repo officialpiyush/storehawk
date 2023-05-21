@@ -24,10 +24,8 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <div className="h-screen bg-[#D6F18E] font-sans">
       <div
-        className="absolute left-0 right-0 top-0 z-10 h-40 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url(/wave.png)",
-        }}
+        id="backgroundImage"
+        className="absolute left-0 right-0 top-0 bottom-0 z-10 h-40 bg-cover bg-center bg-no-repeat bg-[url('/wave.png')]"
       >
         <Head>
           <title>StoreHawk</title>

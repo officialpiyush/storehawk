@@ -25,7 +25,7 @@ export default function UpdateClassName(props: UpdateClassNameProps) {
     return () => {
       elements.forEach((element) => {
         props.removeClassName.forEach((className) => {
-          element.classList.remove(className);
+          element.classList.add(className);
         });
 
         if (props.className) {

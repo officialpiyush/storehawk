@@ -5,7 +5,7 @@ export default function NFTPage() {
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <div className="w-fit">
-        <Chip label="Dashboard" className="bg-[#FF8577] text-2xl font-bold" />
+        <Chip label="NFT Funds" className="bg-white text-2xl font-bold" />
       </div>
 
       <UpdateClassName
@@ -18,6 +18,12 @@ export default function NFTPage() {
         selector="#navbarLink"
         removeClassName={["bg-[#FF8577]"]}
         className={["bg-[#d4ff5d]"]}
+      />
+
+      <UpdateClassName
+        selector="#backgroundImage"
+        removeClassName={["bg-[url('/wave.png')]", "h-40"]}
+        className={["bg-[url('/nft-bg.png')]"]}
       />
     </div>
   );
