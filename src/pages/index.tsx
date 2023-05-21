@@ -5,8 +5,15 @@ import { faker } from "@faker-js/faker";
 import { AreaChart, BarChart } from "@tremor/react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import dayjs from "dayjs";
-import { IconPlus, IconTrash } from "@tabler/icons-react";
-import { useState } from "react";
+import {
+  IconCurrencyEthereum,
+  IconPlus,
+  IconSquareRotatedForbid,
+  IconTrash,
+} from "@tabler/icons-react";
+import { useEffect, useState } from "react";
+import { api } from "@/utils/api";
+import Link from "next/link";
 
 const CHIP_DATA = [
   {
@@ -64,14 +71,75 @@ const MONTHLY_SALES = new Array(dayjs().diff(dayjs().startOf("year"), "month"))
     }),
   }));
 
+interface TodoData {
+  contents: {
+    title: string;
+    deleted: boolean;
+  };
+  timestamp: Date;
+  transactionId: string;
+}
+
 const Home: NextPage = () => {
-  const [todoList, setTodoList] = useState<string[]>([]);
+  const [todoList, setTodoList] = useState<TodoData[]>([]);
   const [todoField, setTodoField] = useState<string>("");
   const [animateTodoRef] = useAutoAnimate();
+
+  const { data: todoData, error: todoError } = api.hedera.getTopic.useQuery({
+    subTopic: "todo",
+  });
+  const addMessageMutation = api.hedera.addMessage.useMutation();
+
+  useEffect(() => {
+    if (todoData && !todoError && todoData.messages.length) {
+      const todoStorted = todoData.messages.filter(
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        (message) => JSON.parse(message.contents).deleted === false
+      );
+
+      setTodoList(
+        todoStorted.map((message) => ({
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          contents: JSON.parse(message.contents),
+          timestamp: message.timestamp,
+          transactionId: message.transactionId,
+        }))
+      );
+    }
+  }, [todoData]);
+
+  useEffect(() => {
+    console.log("todoList", todoList);
+  }, [todoList]);
+
+  const handleAddTodo = async () => {
+    if (!todoField.length) return;
+
+    const { transactionId } = await addMessageMutation.mutateAsync({
+      subTopic: "todo",
+      message: JSON.stringify({
+        title: todoField,
+        deleted: false,
+      }),
+    });
+
+    setTodoList((prev) => [
+      ...prev,
+      {
+        contents: {
+          title: todoField,
+          deleted: false,
+        },
+        timestamp: new Date(),
+        transactionId,
+      },
+    ]);
+  };
+
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <div className="w-fit">
-        <Chip label="Dashboard" className="text-2xl font-bold bg-[#FF8577]" />
+        <Chip label="Dashboard" className="bg-[#FF8577] text-2xl font-bold" />
       </div>
 
       <div className="flex flex-wrap items-center gap-2 font-medium">
@@ -146,8 +214,7 @@ const Home: NextPage = () => {
                 />
                 <button
                   onClick={() => {
-                    setTodoList((prev) => [...prev, todoField]);
-                    setTodoField("");
+                    void handleAddTodo();
                   }}
                   className="rounded-full bg-[#c0de77] p-2"
                 >
@@ -159,20 +226,18 @@ const Home: NextPage = () => {
                 {todoList.map((todo, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-2 rounded-full bg-[#c0de77] px-4 py-2"
+                    className="flex items-center gap-2  rounded-full bg-[#c0de77] px-4 py-4"
                   >
-                    <div>{todo}</div>
+                    <div className="w-full">{todo.contents.title}</div>
 
-                    <button
-                      className="group place-self-end self-center"
-                      onClick={() => {
-                        setTodoList((prev) =>
-                          prev.filter((_, i) => i !== index)
-                        );
-                      }}
+                    <Link
+                      href={`https://hashscan.io/testnet/transaction/${todo.transactionId}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="place-self-end"
                     >
-                      <IconTrash className="group-hover:text-red-600" />
-                    </button>
+                      <IconSquareRotatedForbid />
+                    </Link>
                   </div>
                 ))}
               </div>

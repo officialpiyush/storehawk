@@ -8,7 +8,7 @@ import { client, wallet } from "./index";
 
 const TOPIC_IDS: Record<string, string> = {
   // todo: "0.0.13320726-oezod",
-  todo: "0.0.13321109",
+  todo: "0.0.13321143",
 };
 
 export const getTopic = async (subTopic: string) => {
