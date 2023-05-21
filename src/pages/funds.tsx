@@ -2,6 +2,7 @@ import Chip from "@/components/Chip";
 import NFTCard from "@/components/NFT/NFTCard";
 import UpdateClassName from "@/components/UpdateClassName";
 import { faker } from "@faker-js/faker";
+import { IconUpload } from "@tabler/icons-react";
 import dayjs from "dayjs";
 
 const NFTs = [
@@ -96,7 +97,23 @@ export default function NFTFundsPage() {
           </div>
 
           {/* nft upload minting */}
-          <div className="col-span-4"></div>
+          <div className="col-span-4 flex h-full flex-col gap-4 rounded-xl bg-[#929292]/30 px-8 py-8">
+            <div className="flex h-1/2 items-center justify-center rounded-xl border-4 border-dotted">
+              <IconUpload color="#929292" />
+            </div>
+
+            {[
+              "Description",
+              "Starting Amount",
+              "Sale Amount",
+              "Issue ID",
+              "Publish for Sale",
+            ].map((label, index) => (
+              <button className="rounded-xl bg-[#bbb1ca] px-4 py-2" key={index}>
+                {label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
