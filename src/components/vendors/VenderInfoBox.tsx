@@ -1,10 +1,12 @@
+import { faker } from "@faker-js/faker";
 import {
-    IconBookmarks,
-    IconFileDescription,
-    IconMessageDots,
-    IconTags
+  IconBookmarks,
+  IconFileDescription,
+  IconMessageDots,
+  IconTags,
 } from "@tabler/icons-react";
 import clsx from "clsx";
+import Link from "next/link";
 import type { ReactElement } from "react";
 
 interface VendorInfoBoxProps {
@@ -30,7 +32,7 @@ export default function VendorInfoBox({ title }: VendorInfoBoxProps) {
     <div className="flex w-full flex-col rounded-xl bg-[#D7ECF4]">
       {/* first row */}
       <div className="flex items-center justify-between rounded-xl bg-[#9FC2D1] px-4 py-2">
-        <span className="font-medium">{title}</span>
+        <span className="font-medium">{faker.person.fullName()}</span>
 
         <div className="flex gap-2">
           <button>
@@ -47,12 +49,12 @@ export default function VendorInfoBox({ title }: VendorInfoBoxProps) {
             />
           </button>
 
-          <button>
+          <Link href={`/vendors/chat/${faker.number.hex(900090000000)}`}>
             <VendorChipWithIcon
               icon={<IconMessageDots color="#CFEB70" />}
               label="Text"
             />
-          </button>
+          </Link>
 
           <button>
             <div
