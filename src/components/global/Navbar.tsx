@@ -25,8 +25,8 @@ const NAVBAR_ITEMS = [
     path: "/ledger",
   },
   {
-    name: "Tokenized Debt",
-    path: "/tokenized-debt",
+    name: "NFT Funds",
+    path: "/funds",
   },
   {
     name: "NFT",
