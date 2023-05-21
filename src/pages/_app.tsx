@@ -15,27 +15,12 @@ import "@fontsource/work-sans/800.css";
 import "@fontsource/work-sans/900.css";
 
 import Navbar from "@/components/global/Navbar";
+import "react-toastify/dist/ReactToastify.css";
 import "@/styles/globals.css";
 import Head from "next/head";
-import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
-  const userId = api.hedera.hello.useQuery();
-  const { data, error } = api.hedera.getTopic.useQuery({
-    subTopic: "todo",
-  });
-
-  const addDataMutation = api.hedera.addMessage.useMutation();
-
-  useEffect(() => {
-    console.log(data);
-
-    // addDataMutation.mutate({
-    //   message: "hello",
-    //   subTopic: "todo",
-    // });
-  }, [data]);
-
   return (
     <div className="h-screen bg-[#D6F18E] font-sans">
       <div
@@ -60,6 +45,8 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           <Component {...pageProps} />
         </div>
       </div>
+
+      <ToastContainer />
     </div>
   );
 };
