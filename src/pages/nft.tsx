@@ -13,6 +13,12 @@ export default function NFTPage() {
         removeClassName={[]}
         className={["bg-[#b25cff]"]}
       />
+
+      <UpdateClassName
+        selector="#navbarLink"
+        removeClassName={["bg-[#FF8577]"]}
+        className={["bg-[#d4ff5d]"]}
+      />
     </div>
   );
 }

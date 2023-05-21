@@ -41,6 +41,7 @@ export default function Navbar() {
     <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
       {NAVBAR_ITEMS.map((item) => (
         <Link
+          id={router.pathname.startsWith(item.path) ? "navbarLink" : undefined}
           className={clsx(
             router.pathname.startsWith(item.path) &&
               "rounded-full bg-[#FF8577] px-6 py-1",
