@@ -1,6 +1,7 @@
 import Chip from "@/components/Chip";
 import VendorInfoBox from "@/components/vendors/VenderInfoBox";
 import { api } from "@/utils/api";
+import { faker } from "@faker-js/faker";
 import {
   IconLicense,
   IconPhotoPlus,

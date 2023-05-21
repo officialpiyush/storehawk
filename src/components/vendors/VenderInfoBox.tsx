@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
 import {
   IconBookmarks,
+  IconDiamond,
   IconFileDescription,
   IconMessageDots,
   IconTags,
@@ -30,10 +31,12 @@ function VendorChipWithIcon(props: { icon: ReactElement; label: string }) {
 export default function VendorInfoBox({ title }: VendorInfoBoxProps) {
   const [name, setName] = useState("");
   const [chatKey, setChatKey] = useState("");
+  const [ekyamCount, setEkyamCount] = useState(0);
 
   useEffect(() => {
     setName(faker.person.fullName());
     setChatKey(faker.number.hex(900090000000));
+    setEkyamCount(faker.number.float({ min: 0, max: 2 }));
   }, []);
 
   return (
@@ -54,6 +57,13 @@ export default function VendorInfoBox({ title }: VendorInfoBoxProps) {
             <VendorChipWithIcon
               icon={<IconBookmarks color="#CFEB70" />}
               label="9.33/10"
+            />
+          </button>
+
+          <button>
+            <VendorChipWithIcon
+              icon={<IconDiamond color="#CFEB70" />}
+              label={ekyamCount.toFixed(4)}
             />
           </button>
 
