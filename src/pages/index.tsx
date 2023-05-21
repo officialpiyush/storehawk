@@ -1,19 +1,17 @@
 import { type NextPage } from "next";
 
 import Chip from "@/components/Chip";
-import { faker } from "@faker-js/faker";
-import { AreaChart, BarChart } from "@tremor/react";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
-import dayjs from "dayjs";
-import {
-  IconCurrencyEthereum,
-  IconPlus,
-  IconSquareRotatedForbid,
-  IconTrash,
-} from "@tabler/icons-react";
-import { useEffect, useState } from "react";
 import { api } from "@/utils/api";
+import { faker } from "@faker-js/faker";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import {
+  IconPlus,
+  IconSquareRotatedForbid
+} from "@tabler/icons-react";
+import { AreaChart, BarChart } from "@tremor/react";
+import dayjs from "dayjs";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const CHIP_DATA = [
   {

@@ -12,7 +12,6 @@ const TOPIC_IDS: Record<string, string> = {
 };
 
 export const getTopic = async (subTopic: string) => {
-  const accountInfo = await wallet.getAccountInfo(client.operatorAccountId!);
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unnecessary-type-assertion
   const topicId = TopicId.fromString(TOPIC_IDS[subTopic]!);
 
@@ -48,7 +47,6 @@ export const getTopic = async (subTopic: string) => {
 };
 
 export const createMessage = async (subTopic: string, message: string) => {
-  const accountInfo = await wallet.getAccountInfo(client.operatorAccountId!);
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unnecessary-type-assertion
   const topicId = TopicId.fromString(TOPIC_IDS[subTopic]!);
 
