@@ -114,7 +114,7 @@ export default function VendorChatPage() {
       },
     ]);
 
-    toast.success("Message sent!");
+    toast.success(`Message sent! TxID: ${transactionId}`);
   };
 
   return (
